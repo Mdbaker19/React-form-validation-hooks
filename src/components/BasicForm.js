@@ -47,6 +47,8 @@ const BasicForm = (props) => {
 
     const formSubmitHandler = e => {
         e.preventDefault();
+        if(!formIsValid) return;
+
         resetName();
         resetLastName();
         resetEmail();
@@ -76,7 +78,7 @@ const BasicForm = (props) => {
               onChange={nameInputChangeHandler}
               onBlur={nameInputBlurHandler}
           />
-            {nameHasErrors && <p>Name can not be empty.</p>}
+            {nameHasErrors && <p className="error-text">Name can not be empty.</p>}
         </div>
         <div className={lastNameClass}>
           <label htmlFor='name'>Last Name</label>
@@ -87,7 +89,7 @@ const BasicForm = (props) => {
               onChange={lastNameChangeHandler}
               onBlur={lastNameBlurHandler}
           />
-            {lastNameHasErrors && <p>Last name can not be empty.</p>}
+            {lastNameHasErrors && <p className="error-text">Last name can not be empty.</p>}
         </div>
       </div>
       <div className={emailClass}>
@@ -99,7 +101,7 @@ const BasicForm = (props) => {
             onChange={emailChangeHandler}
             onBlur={emailBlurHandler}
         />
-          {emailHasErrors && <p>Email must be valid.</p>}
+          {emailHasErrors && <p className="error-text">Email must be valid.</p>}
       </div>
       <div className='form-actions'>
         <button disabled={!formIsValid}>Submit</button>
